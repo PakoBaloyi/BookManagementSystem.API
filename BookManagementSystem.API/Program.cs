@@ -1,29 +1,39 @@
-using BookManagementSystem.infrastructure.BookRepository;
 using BookManagementSystem.infrastructure.ServiceCollectionExtensions;
-using BookManagementSystem.Services.BookService;
 using BookManagementSystem.Services.ServiceCollectionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add custom services
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddBookServices();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// ? Add CORS policy to allow Blazor WebAssembly
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBlazorClient", policy =>
+    {
+        policy
+            .WithOrigins("https://localhost:7255") 
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Enable Swagger in development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("AllowBlazorClient");
 
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,0 +1,27 @@
+﻿<EditForm Model="Book" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-2">
+        <label for="title">Title:</label>
+        <InputText id="title" name="title" class="form-control" @bind-Value="Book.Title" />
+    </div>
+
+    <div class="mb-2">
+        <label for="author">Author:</label>
+        <InputText id="author" name="author" class="form-control" @bind-Value="Book.Author" />
+    </div>
+
+    <div class="mb-2">
+        <label for="year">Year:</label>
+        <InputNumber id="year" name="year" class="form-control" @bind-Value="Book.PublicationYear" />
+    </div>
+
+    <div class="form-check mb-3">
+        <InputCheckbox id="available" name="available" class="form-check-input" @bind-Value="Book.IsAvailable" />
+        <label class="form-check-label" for="available">Available</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-secondary ms-2" @onclick="OnCancel">Cancel</button>
+</EditForm>

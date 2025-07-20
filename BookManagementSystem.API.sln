@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagementSystem.Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagementSystem.Tests", "BookManagementSystem.Tests\BookManagementSystem.Tests.csproj", "{FB72CF9C-6365-43AA-B928-76361D18B08E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagementSystem.UI", "BookManagementSystem.UI\BookManagementSystem.UI.csproj", "{5B76B657-F049-4064-B590-2B6A008958D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{FB72CF9C-6365-43AA-B928-76361D18B08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB72CF9C-6365-43AA-B928-76361D18B08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB72CF9C-6365-43AA-B928-76361D18B08E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B76B657-F049-4064-B590-2B6A008958D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B76B657-F049-4064-B590-2B6A008958D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B76B657-F049-4064-B590-2B6A008958D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B76B657-F049-4064-B590-2B6A008958D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{6E9E3BD1-854A-4399-8DA2-211808F697CE} = {4EFD40A1-DABD-49A8-B6C8-AF154EB03336}
 		{A5EEB167-E7B6-47EC-9E88-CDBC00A44C50} = {BE95CEB6-B72F-45B0-ABDE-A5ECDC7FB0F7}
 		{FB72CF9C-6365-43AA-B928-76361D18B08E} = {C5EBAC6D-89A3-4131-BD60-184784004CAC}
+		{5B76B657-F049-4064-B590-2B6A008958D6} = {F3F8752D-CEE5-412E-97D1-4F615C5AC516}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27DDFB0-87A1-472A-B2D3-76BB758F8D96}

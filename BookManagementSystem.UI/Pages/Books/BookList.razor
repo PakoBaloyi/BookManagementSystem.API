@@ -1,0 +1,69 @@
+﻿@page "/books"
+@using BookManagementSystem.Domain.Models
+@using BookManagementSystem.UI.Services
+@using BookManagementSystem.UI.Pages.Shared
+
+<h4>All books in the database!</h4>
+
+@if (!string.IsNullOrWhiteSpace(alertMessage))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @alertMessage
+        <button type="button" class="btn-close" @onclick="() => alertMessage = string.Empty"></button>
+    </div>
+}
+
+<button class="btn btn-primary mb-3" @onclick="ShowAddForm">Add New Book</button>
+
+@if (books == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Available</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in books)
+            {
+                <tr>
+                    <td>@book.BookID</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.PublicationYear</td>
+                    <td>@(book.IsAvailable ? "Yes" : "No")</td>
+                    <td>
+                        <button class="btn btn-sm btn-success me-1" @onclick="() => EditBook(book)">Edit</button>
+                        <button class="btn btn-sm btn-danger" @onclick="() => DeleteBook(book.BookID)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (showForm)
+{
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@((selectedBook?.BookID == 0) ? "Add New Book" : "Edit Book")</h5>
+                    <button type="button" class="btn-close" @onclick="CloseModal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <BookForm Book="selectedBook" OnSave="OnBookSaved" OnCancel="CloseModal" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
