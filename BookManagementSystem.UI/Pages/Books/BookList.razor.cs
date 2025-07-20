@@ -12,6 +12,7 @@ public partial class BookList : ComponentBase
     protected string alertMessage = string.Empty;
     protected bool showForm = false;
     protected Book selectedBook = new();
+    protected string searchKeyword = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -61,5 +62,17 @@ public partial class BookList : ComponentBase
     protected void CloseModal()
     {
         showForm = false;
+    }
+    protected async Task SearchBooks()
+    {
+        if (!string.IsNullOrWhiteSpace(searchKeyword))
+        {
+            books = await BookService.SearchBooksAsync(searchKeyword);
+        }
+    }
+    protected async Task ClearSearch()
+    {
+        searchKeyword = string.Empty;
+        await LoadBooks();
     }
 }

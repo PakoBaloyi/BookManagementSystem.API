@@ -1,7 +1,59 @@
 ﻿@page "/"
+@inherits HomeBase
 
-<PageTitle>Home</PageTitle>
+@using BookManagementSystem.Domain.Models
+@using BookManagementSystem.UI.Services
 
-<h1>Hey </h1>
+@inject IBookApiService BookService
 
-Welcome to your new app.
+<PageTitle>Dashboard</PageTitle>
+
+<h1 class="mb-4">Library Dashboard</h1>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">Total Books</h5>
+                <p class="card-text display-6">@totalBooks</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Available Books</h5>
+                <p class="card-text display-6">@availableBooks</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow">
+    <div class="card-header">
+        <strong>Books by Year</strong>
+    </div>
+    <div class="card-body">
+        @if (booksByYear.Any())
+        {
+            @foreach (var year in booksByYear.Keys.OrderBy(y => y))
+            {
+                var count = booksByYear[year];
+                var width = Math.Min(count * 20, 100);
+
+                <div class="mb-2">
+                    <div>@year (@count)</div>
+                    <div class="progress">
+                        <div class="progress-bar bg-info" style="width:@width%">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No data available.</p>
+        }
+    </div>
+</div>
