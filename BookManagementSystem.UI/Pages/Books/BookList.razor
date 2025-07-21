@@ -13,16 +13,13 @@
     </div>
 }
 
-<!-- Search and Add Button in One Line -->
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <!-- Search Input -->
     <div class="input-group w-50">
         <input class="form-control" @bind="searchKeyword" placeholder="Search by title or author..." />
         <button class="btn btn-outline-secondary" @onclick="SearchBooks">Search</button>
         <button class="btn btn-outline-secondary" @onclick="ClearSearch">Clear</button>
     </div>
 
-    <!-- Add Button -->
     <button class="btn btn-primary" @onclick="ShowAddForm">Add New Book</button>
 </div>
 
