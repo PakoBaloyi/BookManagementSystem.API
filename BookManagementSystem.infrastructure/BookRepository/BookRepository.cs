@@ -10,13 +10,13 @@ namespace BookManagementSystem.infrastructure.BookRepository
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync()
         {
-            return await dapperContext.GetAsync<Book, dynamic>(_db, "[dbo].[GetAvailableBooks]", null);
+            return await dapperContext.GetAsync<Book, dynamic>(_db,"GetAvailableBooks", null);
         }
 
         public async Task<Book?> GetBookByIdAsync(int id)
         {
             var parameters = new { BookID = id };
-            return await dapperContext.GetSingleAsync<Book, dynamic>(_db, "[dbo].[GetBookById]", parameters);
+            return await dapperContext.GetSingleAsync<Book, dynamic>(_db,"GetBookById", parameters);
         }
 
         public async Task AddBookAsync(Book book)
@@ -28,7 +28,7 @@ namespace BookManagementSystem.infrastructure.BookRepository
                 book.PublicationYear,
                 book.IsAvailable
             };
-            await dapperContext.ExecuteAsync(_db, "[dbo].[AddBook]", parameters);
+            await dapperContext.ExecuteAsync(_db,"AddBook", parameters);
         }
 
         public async Task UpdateBookAsync(Book book)
@@ -41,19 +41,19 @@ namespace BookManagementSystem.infrastructure.BookRepository
                 book.PublicationYear,
                 book.IsAvailable
             };
-            await dapperContext.ExecuteAsync(_db, "[dbo].[UpdateBook]", parameters);
+            await dapperContext.ExecuteAsync(_db,"UpdateBook", parameters);
         }
 
         public async Task DeleteBookAsync(int id)
         {
             var parameters = new { BookID = id };
-            await dapperContext.ExecuteAsync(_db, "[dbo].[RemoveBook]", parameters);
+            await dapperContext.ExecuteAsync(_db,"RemoveBook", parameters);
         }
 
         public async Task<IEnumerable<Book>> SearchBooksAsync(string keyword)
         {
             var parameters = new { Keyword = keyword };
-            return await dapperContext.GetAsync<Book, dynamic>(_db, "[dbo].[SearchBooks]", parameters);
+            return await dapperContext.GetAsync<Book, dynamic>(_db,"SearchBooks", parameters);
         }
     }
 }
